@@ -11,27 +11,27 @@ export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
   @Post()
-  create(@Body() createProductDto: CreateProductDto) {
-    return this.productsService.create(createProductDto);
+  async createProduct(@Body() createProductDto: CreateProductDto) {
+    return await this.productsService.newProduct(createProductDto);
   }
 
   @Get()
-  findAll() {
-    return this.productsService.findAll();
+  async getProducts() {
+    return await this.productsService.getAllProducts();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.productsService.findOne(+id);
+  async getProduc(@Param('id') id: string) {
+    return await this.productsService.getProductById(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateProductDto: UpdateProductDto) {
-    return this.productsService.update(+id, updateProductDto);
+  async updateProduct(@Param('id') id: string, @Body() updateProductDto: UpdateProductDto) {
+    return await this.productsService.updateProduct(id, updateProductDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.productsService.remove(+id);
+  async removeProduct(@Param('id') id: string) {
+    return await this.productsService.removeProduct(id);
   }
 }
